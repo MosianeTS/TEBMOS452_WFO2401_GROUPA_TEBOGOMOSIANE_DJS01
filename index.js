@@ -20,6 +20,16 @@ const remainingFuel = spaceCraftParameters.initialFuel - spaceCraftParameters.fu
 const newVelocity = calculateNewVelocity(spaceCraftParameters) //calculates new velocity based on acceleration
 
 function calculateNewVelocity ({acceleration, initialVelocity, time})  { 
+
+  if (!acceleration) {
+    throw new Error('Please input acceleration value in m/s^2');
+  }
+  if (!initialVelocity) {
+    throw new Error('Please input initial velocity value in km/h');   
+  }                  
+  if (!time) {
+    throw new Error('Please input time value in s');
+  }
   return (initialVelocity/3.6 + (acceleration*time))*3.6
 }
 
