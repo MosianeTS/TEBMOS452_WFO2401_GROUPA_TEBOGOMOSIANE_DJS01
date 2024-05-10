@@ -25,13 +25,13 @@ const newVelocity = calculateNewVelocity(spaceCraftParameters) //calculates new 
 function calculateNewVelocity ({acceleration = 3, initialVelocity = 10000, time = 3600})  { 
 
   if (!acceleration) {
-    throw new Error('Please input acceleration value in m/s^2');    
+    throw new Error('Please input acceleration value in m/s^2');    //throws an error if there is no acceleration value
   }
   if (!initialVelocity) {
-    throw new Error('Please input initial velocity value in km/h');   
+    throw new Error('Please input initial velocity value in km/h');     //throws an error if there is no initial velocity value
   }                  
   if (!time) {
-    throw new Error('Please input time value in s');
+    throw new Error('Please input time value in s');                //throws an error if there is no time value
   }
   return (initialVelocity/conversionFactor + (acceleration*time))*conversionFactor
 }
