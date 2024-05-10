@@ -6,6 +6,9 @@
  */
 
 // Given Parameters
+
+let conversionFactor = 3.6;
+
 const spaceCraftParameters = {
   initialVelocity: 10000,    //initial velocity (km/hr)
   acceleration: 3,           // acceleration (m/s^2)
@@ -15,14 +18,14 @@ const spaceCraftParameters = {
   fuelBurnRate: 0.5          // fuel burn rate (kg/s)
 }
 
-const newDistance = (spaceCraftParameters.initialDistance + ((spaceCraftParameters.initialVelocity/3.6)*spaceCraftParameters.time))/1000 //calculates new distance
+const newDistance = (spaceCraftParameters.initialDistance + ((spaceCraftParameters.initialVelocity/conversionFactor)*spaceCraftParameters.time))/1000 //calculates new distance
 const remainingFuel = spaceCraftParameters.initialFuel - spaceCraftParameters.fuelBurnRate*spaceCraftParameters.time //calculates remaining fuel
 const newVelocity = calculateNewVelocity(spaceCraftParameters) //calculates new velocity based on acceleration
 
-function calculateNewVelocity ({acceleration, initialVelocity, time})  { 
+function calculateNewVelocity ({acceleration = 3, initialVelocity = 10000, time = 3600})  { 
 
   if (!acceleration) {
-    throw new Error('Please input acceleration value in m/s^2');
+    throw new Error('Please input acceleration value in m/s^2');    
   }
   if (!initialVelocity) {
     throw new Error('Please input initial velocity value in km/h');   
@@ -30,7 +33,7 @@ function calculateNewVelocity ({acceleration, initialVelocity, time})  {
   if (!time) {
     throw new Error('Please input time value in s');
   }
-  return (initialVelocity/3.6 + (acceleration*time))*3.6
+  return (initialVelocity/conversionFactor + (acceleration*time))*conversionFactor
 }
 
 console.log(`Corrected New Velocity: ${newVelocity} km/h`);
